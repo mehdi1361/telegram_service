@@ -7,3 +7,7 @@ class ChannelSerializer(serializers.ModelSerializer):
         model = Channel
         fields = ("user", "name", "url", "description", "create_date")
 
+class GemBoxSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GemBox
+        fields = ("name", "price", "sku")
