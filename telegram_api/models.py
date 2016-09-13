@@ -38,7 +38,21 @@ class UserProfile(models.Model):
     class Meta:
         db_table = 'user_profile'
 
-# class UserGemBox(models.Model):
-    # user = models.ForeignKey(GemBox)
-    
+    def __str__(self):
+        return self.user.username
 
+class UserGemBox(models.Model):
+    user = models.ForeignKey(UserProfile)
+    gem_box = models.ForeignKey(GemBox)
+    create_date = models.DateTimeField(verbose_name=_('created date'),auto_now_add=True)
+
+    class Meta:
+        db_table = 'user_gem_buy'
+    
+class UsedGem(models.Model):
+    user = models.ForeignKey(UserProfile)
+    gem_quantity = models.IntegerField(default=5, unique=True)
+    create_date = models.DateTimeField(verbose_name=_('created date'),auto_now_add=True)
+
+    class Meta:
+        db_table = 'user_gem_used'
